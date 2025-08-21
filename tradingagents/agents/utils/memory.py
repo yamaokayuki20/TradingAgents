@@ -9,7 +9,10 @@ class FinancialSituationMemory:
             self.embedding = "nomic-embed-text"
         else:
             self.embedding = "text-embedding-3-small"
-        self.client = OpenAI(base_url=config["backend_url"])
+        api_key = None
+        if config.get("llm_provider", "").lower() == "groq":
+            api_key = os.getenv("GROQ_API_KEY")
+        self.client = OpenAI(base_url=config["backend_url"], api_key=api_key)
         self.chroma_client = chromadb.Client(Settings(allow_reset=True))
         self.situation_collection = self.chroma_client.create_collection(name=name)
 
