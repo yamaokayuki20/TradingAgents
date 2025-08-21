@@ -150,7 +150,7 @@ An interface will appear showing results as they load, letting you track the age
 
 ### Implementation Details
 
-We built TradingAgents with LangGraph to ensure flexibility and modularity. We utilize `o1-preview` and `gpt-4o` as our deep thinking and fast thinking LLMs for our experiments. However, for testing purposes, we recommend you use `o4-mini` and `gpt-4.1-mini` to save on costs as our framework makes **lots of** API calls.
+We built TradingAgents with LangGraph to ensure flexibility and modularity. We utilize `gpt-5` and `gpt-4o` as our deep thinking and fast thinking LLMs for our experiments. However, for testing purposes, we recommend you use `o4-mini` and `gpt-4.1-mini` to save on costs as our framework makes **lots of** API calls.
 
 ### Python Usage
 
@@ -168,6 +168,8 @@ print(decision)
 ```
 
 You can also adjust the default configuration to set your own choice of LLMs, debate rounds, etc.
+
+The default configuration uses `gpt-5` for deep reasoning and `gpt-4o-mini` for quick analysis, but you can customize these values as needed.
 
 ```python
 from tradingagents.graph.trading_graph import TradingAgentsGraph
