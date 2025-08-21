@@ -103,13 +103,13 @@ class MessageBuffer:
         if latest_section and latest_content:
             # Format the current section for display
             section_titles = {
-                "market_report": "Market Analysis",
-                "sentiment_report": "Social Sentiment",
-                "news_report": "News Analysis",
-                "fundamentals_report": "Fundamentals Analysis",
-                "investment_plan": "Research Team Decision",
-                "trader_investment_plan": "Trading Team Plan",
-                "final_trade_decision": "Portfolio Management Decision",
+                "market_report": "市場分析",
+                "sentiment_report": "ソーシャルセンチメント",
+                "news_report": "ニュース分析",
+                "fundamentals_report": "ファンダメンタルズ分析",
+                "investment_plan": "リサーチチームの決定",
+                "trader_investment_plan": "トレーディングチームの計画",
+                "final_trade_decision": "ポートフォリオマネジメントの決定",
             }
             self.current_report = (
                 f"### {section_titles[latest_section]}\n{latest_content}"
@@ -131,37 +131,37 @@ class MessageBuffer:
                 "fundamentals_report",
             ]
         ):
-            report_parts.append("## Analyst Team Reports")
+            report_parts.append("## アナリストチームのレポート")
             if self.report_sections["market_report"]:
                 report_parts.append(
-                    f"### Market Analysis\n{self.report_sections['market_report']}"
+                    f"### 市場分析\n{self.report_sections['market_report']}"
                 )
             if self.report_sections["sentiment_report"]:
                 report_parts.append(
-                    f"### Social Sentiment\n{self.report_sections['sentiment_report']}"
+                    f"### ソーシャルセンチメント\n{self.report_sections['sentiment_report']}"
                 )
             if self.report_sections["news_report"]:
                 report_parts.append(
-                    f"### News Analysis\n{self.report_sections['news_report']}"
+                    f"### ニュース分析\n{self.report_sections['news_report']}"
                 )
             if self.report_sections["fundamentals_report"]:
                 report_parts.append(
-                    f"### Fundamentals Analysis\n{self.report_sections['fundamentals_report']}"
+                    f"### ファンダメンタルズ分析\n{self.report_sections['fundamentals_report']}"
                 )
 
         # Research Team Reports
         if self.report_sections["investment_plan"]:
-            report_parts.append("## Research Team Decision")
+            report_parts.append("## リサーチチームの決定")
             report_parts.append(f"{self.report_sections['investment_plan']}")
 
         # Trading Team Reports
         if self.report_sections["trader_investment_plan"]:
-            report_parts.append("## Trading Team Plan")
+            report_parts.append("## トレーディングチームの計画")
             report_parts.append(f"{self.report_sections['trader_investment_plan']}")
 
         # Portfolio Management Decision
         if self.report_sections["final_trade_decision"]:
-            report_parts.append("## Portfolio Management Decision")
+            report_parts.append("## ポートフォリオマネジメントの決定")
             report_parts.append(f"{self.report_sections['final_trade_decision']}")
 
         self.final_report = "\n\n".join(report_parts) if report_parts else None
@@ -358,7 +358,7 @@ def update_display(layout, spinner_text=None):
         layout["analysis"].update(
             Panel(
                 Markdown(message_buffer.current_report),
-                title="Current Report",
+                title="現在のレポート",
                 border_style="green",
                 padding=(1, 2),
             )
@@ -366,8 +366,8 @@ def update_display(layout, spinner_text=None):
     else:
         layout["analysis"].update(
             Panel(
-                "[italic]Waiting for analysis report...[/italic]",
-                title="Current Report",
+                "[italic]分析レポートを待っています...[/italic]",
+                title="現在のレポート",
                 border_style="green",
                 padding=(1, 2),
             )
@@ -385,7 +385,7 @@ def update_display(layout, spinner_text=None):
     stats_table = Table(show_header=False, box=None, padding=(0, 2), expand=True)
     stats_table.add_column("Stats", justify="center")
     stats_table.add_row(
-        f"Tool Calls: {tool_calls_count} | LLM Calls: {llm_calls_count} | Generated Reports: {reports_count}"
+        f"ツール呼び出し: {tool_calls_count} | LLM呼び出し: {llm_calls_count} | 生成されたレポート: {reports_count}"
     )
 
     layout["footer"].update(Panel(stats_table, border_style="grey50"))
@@ -518,7 +518,7 @@ def get_analysis_date():
 
 def display_complete_report(final_state):
     """Display the complete analysis report with team-based panels."""
-    console.print("\n[bold green]Complete Analysis Report[/bold green]\n")
+    console.print("\n[bold green]完全な分析レポート[/bold green]\n")
 
     # I. Analyst Team Reports
     analyst_reports = []
@@ -528,7 +528,7 @@ def display_complete_report(final_state):
         analyst_reports.append(
             Panel(
                 Markdown(final_state["market_report"]),
-                title="Market Analyst",
+                title="マーケットアナリスト",
                 border_style="blue",
                 padding=(1, 2),
             )
@@ -539,7 +539,7 @@ def display_complete_report(final_state):
         analyst_reports.append(
             Panel(
                 Markdown(final_state["sentiment_report"]),
-                title="Social Analyst",
+                title="ソーシャルアナリスト",
                 border_style="blue",
                 padding=(1, 2),
             )
@@ -550,7 +550,7 @@ def display_complete_report(final_state):
         analyst_reports.append(
             Panel(
                 Markdown(final_state["news_report"]),
-                title="News Analyst",
+                title="ニュースアナリスト",
                 border_style="blue",
                 padding=(1, 2),
             )
@@ -561,7 +561,7 @@ def display_complete_report(final_state):
         analyst_reports.append(
             Panel(
                 Markdown(final_state["fundamentals_report"]),
-                title="Fundamentals Analyst",
+                title="ファンダメンタルズアナリスト",
                 border_style="blue",
                 padding=(1, 2),
             )
@@ -571,7 +571,7 @@ def display_complete_report(final_state):
         console.print(
             Panel(
                 Columns(analyst_reports, equal=True, expand=True),
-                title="I. Analyst Team Reports",
+                title="I. アナリストチームのレポート",
                 border_style="cyan",
                 padding=(1, 2),
             )
@@ -587,7 +587,7 @@ def display_complete_report(final_state):
             research_reports.append(
                 Panel(
                     Markdown(debate_state["bull_history"]),
-                    title="Bull Researcher",
+                    title="ブルリサーチャー",
                     border_style="blue",
                     padding=(1, 2),
                 )
@@ -598,7 +598,7 @@ def display_complete_report(final_state):
             research_reports.append(
                 Panel(
                     Markdown(debate_state["bear_history"]),
-                    title="Bear Researcher",
+                    title="ベアリサーチャー",
                     border_style="blue",
                     padding=(1, 2),
                 )
@@ -609,7 +609,7 @@ def display_complete_report(final_state):
             research_reports.append(
                 Panel(
                     Markdown(debate_state["judge_decision"]),
-                    title="Research Manager",
+                    title="リサーチマネージャー",
                     border_style="blue",
                     padding=(1, 2),
                 )
@@ -619,7 +619,7 @@ def display_complete_report(final_state):
             console.print(
                 Panel(
                     Columns(research_reports, equal=True, expand=True),
-                    title="II. Research Team Decision",
+                    title="II. リサーチチームの決定",
                     border_style="magenta",
                     padding=(1, 2),
                 )
@@ -631,11 +631,11 @@ def display_complete_report(final_state):
             Panel(
                 Panel(
                     Markdown(final_state["trader_investment_plan"]),
-                    title="Trader",
+                    title="トレーダー",
                     border_style="blue",
                     padding=(1, 2),
                 ),
-                title="III. Trading Team Plan",
+                title="III. トレーディングチームの計画",
                 border_style="yellow",
                 padding=(1, 2),
             )
@@ -651,7 +651,7 @@ def display_complete_report(final_state):
             risk_reports.append(
                 Panel(
                     Markdown(risk_state["risky_history"]),
-                    title="Aggressive Analyst",
+                    title="リスキーアナリスト",
                     border_style="blue",
                     padding=(1, 2),
                 )
@@ -662,7 +662,7 @@ def display_complete_report(final_state):
             risk_reports.append(
                 Panel(
                     Markdown(risk_state["safe_history"]),
-                    title="Conservative Analyst",
+                    title="保守的アナリスト",
                     border_style="blue",
                     padding=(1, 2),
                 )
@@ -673,7 +673,7 @@ def display_complete_report(final_state):
             risk_reports.append(
                 Panel(
                     Markdown(risk_state["neutral_history"]),
-                    title="Neutral Analyst",
+                    title="中立アナリスト",
                     border_style="blue",
                     padding=(1, 2),
                 )
@@ -683,7 +683,7 @@ def display_complete_report(final_state):
             console.print(
                 Panel(
                     Columns(risk_reports, equal=True, expand=True),
-                    title="IV. Risk Management Team Decision",
+                    title="IV. リスク管理チームの決定",
                     border_style="red",
                     padding=(1, 2),
                 )
@@ -695,11 +695,11 @@ def display_complete_report(final_state):
                 Panel(
                     Panel(
                         Markdown(risk_state["judge_decision"]),
-                        title="Portfolio Manager",
+                        title="ポートフォリオマネージャー",
                         border_style="blue",
                         padding=(1, 2),
                     ),
-                    title="V. Portfolio Manager Decision",
+                    title="V. ポートフォリオマネージャーの決定",
                     border_style="green",
                     padding=(1, 2),
                 )
